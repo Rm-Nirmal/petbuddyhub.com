@@ -18,7 +18,7 @@ permalink: /categories/
     <div class="categories-page-grid">
       {% for cat in categories %}
         <a href="#{{ cat.slug }}" class="category-page-card fade-in" id="cat-{{ cat.slug }}">
-          <img src="/assets/{{ cat.image }}" alt="{{ cat.name }}" loading="lazy">
+          <img src="{{ ('/assets/' + cat.image) | url }}" alt="{{ cat.name }}" loading="lazy">
           <div class="category-page-card__overlay">
             <h3>{{ cat.name }}</h3>
             <p>{{ cat.description }}</p>

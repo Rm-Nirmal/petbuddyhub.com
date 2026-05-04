@@ -90,6 +90,7 @@ module.exports = function (eleventyConfig) {
   });
 
   return {
+    pathPrefix: (process.env.PATH_PREFIX || "/").trim(),
     dir: {
       input: "src",
       output: "public",

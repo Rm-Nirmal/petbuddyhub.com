@@ -16,14 +16,14 @@ metaDescription: Expert pet care tips, training guides, honest product reviews, 
         <h1 class="hero__title">Give Your Pet The <em>Best Life</em> Possible</h1>
         <p class="hero__subtitle">Expert-backed training tips, nutrition guides, and honest product reviews. Everything you need to be the best pet parent.</p>
         <div class="hero__ctas">
-          <a href="/start-here/" class="btn btn-primary">
+          <a href="{{ '/start-here/' | url }}" class="btn btn-primary">
             Start Here {{ icon("arrow-right", 18) }}
           </a>
-          <a href="/blog/" class="btn btn-outline">Browse Articles</a>
+          <a href="{{ '/blog/' | url }}" class="btn btn-outline">Browse Articles</a>
         </div>
       </div>
       <div class="hero__image">
-        <img src="/assets/zigmarsberzins-girl-5623231_1920.jpg" alt="Happy pet owner with dog" width="580" height="400">
+        <img src="{{ '/assets/zigmarsberzins-girl-5623231_1920.jpg' | url }}" alt="Happy pet owner with dog" width="580" height="400">
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@ metaDescription: Expert pet care tips, training guides, honest product reviews, 
     </div>
     <div class="categories-grid">
       {% for cat in categories %}
-        <a href="/categories/#{{ cat.slug }}" class="category-card fade-in">
+        <a href="{{ ('/categories/#' + cat.slug) | url }}" class="category-card fade-in">
           <div class="category-card__icon">{{ icon(cat.icon, 26) }}</div>
           <div class="category-card__title">{{ cat.name }}</div>
           <div class="category-card__count">View articles</div>
@@ -64,7 +64,7 @@ metaDescription: Expert pet care tips, training guides, honest product reviews, 
       {% endfor %}
     </div>
     <div style="text-align:center; margin-top:48px;">
-      <a href="/blog/" class="btn btn-outline">View All Articles</a>
+      <a href="{{ '/blog/' | url }}" class="btn btn-outline">View All Articles</a>
     </div>
   </div>
 </section>
@@ -77,7 +77,7 @@ metaDescription: Expert pet care tips, training guides, honest product reviews, 
         <h2>New Pet Parent? Start Here</h2>
         <p>We've curated the ultimate beginner's guide with everything you need to know, from choosing the right food to mastering basic training.</p>
       </div>
-      <a href="/start-here/" class="btn">Read the Guide</a>
+      <a href="{{ '/start-here/' | url }}" class="btn">Read the Guide</a>
     </div>
   </div>
 </section>

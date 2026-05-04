@@ -17,7 +17,7 @@ pageTitle: "{{ title }}"
 <section class="section" style="padding-top: 0;">
   <div class="container">
     <div class="article">
-      <img src="/assets/{{ image }}" alt="{{ title }}" class="article__featured-img" loading="lazy">
+      <img src="{{ ('/assets/' + image) | url }}" alt="{{ title }}" class="article__featured-img" loading="lazy">
 
       <div class="ad-slot">Advertisement</div>
 

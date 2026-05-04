@@ -1,6 +1,6 @@
 {# Post Card Component — Works with both collections.posts and sanityPosts data #}
 {% set postTitle = post.data.title if post.data else post.title %}
-{% set postImage = ("/assets/" + post.data.image) if post.data else post.featuredImage %}
+{% set postImage = (("/assets/" + post.data.image) | url) if post.data else post.featuredImage %}
 {% set postExcerpt = post.data.excerpt if post.data else post.excerpt %}
 {% set postDate = post.data.date if post.data else post.publishedAt %}
 {% set postUrl = post.url if post.data else ("/blog/" + post.slug + "/") %}
@@ -8,7 +8,7 @@
 {% set postImageAlt = postTitle %}
 
 <article class="post-card fade-in" {% if post.category or (post.data and post.data.category) %}data-category="{{ post.data.category if post.data else post.category }}"{% endif %}>
-  <a href="{{ postUrl }}" class="post-card__image">
+  <a href="{{ postUrl | url }}" class="post-card__image">
     {% if postImage %}
       <img src="{{ postImage }}" alt="{{ postImageAlt }}" loading="lazy">
     {% endif %}
@@ -19,10 +19,10 @@
       <span class="post-card__date">{{ postDate | dateShort }}</span>
     </div>
     <h3 class="post-card__title">
-      <a href="{{ postUrl }}">{{ postTitle }}</a>
+      <a href="{{ postUrl | url }}">{{ postTitle }}</a>
     </h3>
     <p class="post-card__excerpt">{{ postExcerpt | truncate(120) }}</p>
-    <a href="{{ postUrl }}" class="post-card__read-more">
+    <a href="{{ postUrl | url }}" class="post-card__read-more">
       Read More
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
     </a>

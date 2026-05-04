@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="{{ '/css/main.css' | url }}">
 
   <!-- AdSense placeholder — replace with your actual code -->
   <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
@@ -34,7 +34,7 @@
 
   {% include "partials/footer.njk" %}
 
-  <script src="/js/main.js" defer></script>
+  <script src="{{ '/js/main.js' | url }}" defer></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

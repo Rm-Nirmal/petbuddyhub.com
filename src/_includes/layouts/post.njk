@@ -1,0 +1,40 @@
+---
+layout: layouts/base.njk
+pageTitle: "{{ title }}"
+---
+
+<section class="page-header" style="padding-bottom: 40px;">
+  <div class="container">
+    <div class="article__meta" style="justify-content: center;">
+      <span class="post-card__category">{{ categoryName or category }}</span>
+      <span style="color: var(--text-muted); font-size: 0.9rem;">{{ date | dateFormat }}</span>
+      <span style="color: var(--text-muted); font-size: 0.9rem;">{{ content | readingTime }}</span>
+    </div>
+    <h1>{{ title }}</h1>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="article">
+      <img src="/assets/{{ image }}" alt="{{ title }}" class="article__featured-img" loading="lazy">
+
+      <div class="ad-slot">Advertisement</div>
+
+      <div class="article__content">
+        {{ content | safe }}
+      </div>
+
+      <div class="ad-slot">Advertisement</div>
+
+      <div class="newsletter" style="margin-top: 48px;">
+        <h2>Enjoyed This Article?</h2>
+        <p>Get more helpful pet care tips delivered to your inbox every week.</p>
+        <form class="newsletter__form">
+          <input type="email" placeholder="Enter your email" required aria-label="Email">
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

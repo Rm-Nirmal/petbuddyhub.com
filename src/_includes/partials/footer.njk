@@ -1,0 +1,53 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <a href="/" class="navbar__logo" style="color:#fff; margin-bottom: 8px;">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" style="fill: var(--primary-light);">
+            <ellipse cx="14" cy="10" rx="5" ry="6.5"/>
+            <ellipse cx="34" cy="10" rx="5" ry="6.5"/>
+            <ellipse cx="7" cy="24" rx="4.5" ry="5.5"/>
+            <ellipse cx="41" cy="24" rx="4.5" ry="5.5"/>
+            <ellipse cx="24" cy="30" rx="12" ry="11"/>
+          </svg>
+          PetBuddyHub
+        </a>
+        <p>Your trusted companion for expert pet care advice, honest product reviews, and practical guides to help your furry friends thrive.</p>
+      </div>
+
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer__links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/start-here/">Start Here</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Categories</h4>
+        <ul class="footer__links">
+          {% for cat in categories %}
+            <li><a href="/categories/#{{ cat.slug }}">{{ cat.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div>
+        <h4>Stay Updated</h4>
+        <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 16px;">Get the latest pet care tips delivered to your inbox weekly.</p>
+        <div class="footer__newsletter-mini">
+          <input type="email" placeholder="Your email address" aria-label="Email for newsletter">
+          <button class="btn btn-primary" style="width:100%; justify-content: center;">Subscribe</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; {{ 2026 }} {{ site.title }}. All rights reserved.</p>
+      <p>Made with care for pet lovers everywhere</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,67 @@
+{# Premium Affiliate Product Cards #}
+{% from "partials/icons.njk" import icon %}
+
+<div class="affiliate-section">
+  <div class="affiliate-section__header">
+    <h3 class="affiliate-section__title">{{ icon("award", 20) }} Our Recommended Products</h3>
+    <p class="affiliate-section__subtitle">Hand-picked by our team based on quality, value, and real-world testing.</p>
+  </div>
+
+  <div class="affiliate-products">
+    {% for product in sanityPost.affiliateLinks %}
+      <div class="affiliate-card {% if product.badge %}affiliate-card--has-badge{% endif %}">
+        <div class="affiliate-card__inner">
+          {% if product.productImage %}
+            <div class="affiliate-card__image">
+              <img src="{{ product.productImage }}" alt="{{ product.productName }}" loading="lazy">
+            </div>
+          {% endif %}
+
+          <div class="affiliate-card__content">
+            {% if product.badge %}
+              <span class="affiliate-card__badge">{{ product.badge }}</span>
+            {% endif %}
+
+            <h4 class="affiliate-card__name">{{ product.productName }}</h4>
+
+            {% if product.rating %}
+              <div class="affiliate-card__rating">
+                {% for i in range(0, 5) %}
+                  {% if i < product.rating %}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--primary)" stroke="var(--primary)" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  {% else %}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            {% if product.description %}
+              <p class="affiliate-card__desc">{{ product.description }}</p>
+            {% endif %}
+
+            <div class="affiliate-card__footer">
+              <div class="affiliate-card__pricing">
+                {% if product.price %}
+                  <span class="affiliate-card__price">{{ product.price }}</span>
+                {% endif %}
+                {% if product.originalPrice %}
+                  <span class="affiliate-card__original-price">{{ product.originalPrice }}</span>
+                {% endif %}
+              </div>
+              <div class="affiliate-card__actions">
+                {% if product.store %}
+                  <span class="affiliate-card__store">at {{ product.store }}</span>
+                {% endif %}
+                <a href="{{ product.productUrl }}" class="affiliate-card__btn" target="_blank" rel="noopener noreferrer nofollow sponsored">
+                  {{ product.buttonText or "Check Price" }}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,126 @@
+---
+layout: layouts/base.njk
+pageTitle: Your Trusted Pet Care Companion
+metaDescription: Expert pet care tips, training guides, honest product reviews, and nutrition advice to help your furry friends live their best life.
+---
+{% from "partials/icons.njk" import icon %}
+
+{# ===== HERO ===== #}
+<section class="hero">
+  <div class="container">
+    <div class="hero__inner">
+      <div class="hero__text">
+        <div class="hero__badge">
+          {{ icon("paw", 16) }} Your Trusted Pet Care Hub
+        </div>
+        <h1 class="hero__title">Give Your Pet The <em>Best Life</em> Possible</h1>
+        <p class="hero__subtitle">Expert-backed training tips, nutrition guides, and honest product reviews. Everything you need to be the best pet parent.</p>
+        <div class="hero__ctas">
+          <a href="/start-here/" class="btn btn-primary">
+            Start Here {{ icon("arrow-right", 18) }}
+          </a>
+          <a href="/blog/" class="btn btn-outline">Browse Articles</a>
+        </div>
+      </div>
+      <div class="hero__image">
+        <img src="/assets/zigmarsberzins-girl-5623231_1920.jpg" alt="Happy pet owner with dog" width="580" height="400">
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ===== CATEGORIES ===== #}
+<section class="section">
+  <div class="container">
+    <div class="section__header">
+      <h2>Explore by Category</h2>
+      <p>Find exactly what you need, from training basics to expert product reviews.</p>
+    </div>
+    <div class="categories-grid">
+      {% for cat in categories %}
+        <a href="/categories/#{{ cat.slug }}" class="category-card fade-in">
+          <div class="category-card__icon">{{ icon(cat.icon, 26) }}</div>
+          <div class="category-card__title">{{ cat.name }}</div>
+          <div class="category-card__count">View articles</div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ===== LATEST POSTS ===== #}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__header">
+      <h2>Latest Articles</h2>
+      <p>Fresh insights and tips from our pet care experts.</p>
+    </div>
+    <div class="posts-grid">
+      {% set postList = sanityPosts if sanityPosts.length else collections.posts %}
+      {% for post in postList %}
+        {% if loop.index <= 3 %}
+          {% include "partials/post-card.njk" %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div style="text-align:center; margin-top:48px;">
+      <a href="/blog/" class="btn btn-outline">View All Articles</a>
+    </div>
+  </div>
+</section>
+
+{# ===== FEATURED BANNER ===== #}
+<section class="section">
+  <div class="container">
+    <div class="featured-banner fade-in">
+      <div>
+        <h2>New Pet Parent? Start Here</h2>
+        <p>We've curated the ultimate beginner's guide with everything you need to know, from choosing the right food to mastering basic training.</p>
+      </div>
+      <a href="/start-here/" class="btn">Read the Guide</a>
+    </div>
+  </div>
+</section>
+
+{# ===== AD SLOT ===== #}
+<div class="container">
+  <div class="ad-slot">Advertisement</div>
+</div>
+
+{# ===== NEWSLETTER ===== #}
+<section class="section">
+  <div class="container">
+    <div class="newsletter fade-in">
+      <h2>Join 10,000+ Happy Pet Parents</h2>
+      <p>Weekly tips, exclusive guides, and the best product deals delivered straight to your inbox. No spam, ever.</p>
+      <form class="newsletter__form" id="newsletter-form">
+        <input type="email" placeholder="Enter your email address" required aria-label="Email address">
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+{# ===== TRUST BAR ===== #}
+<section class="trust-bar">
+  <div class="container">
+    <div class="trust-bar__stats">
+      <div class="trust-bar__stat fade-in">
+        <h3>200+</h3>
+        <p>Expert Articles</p>
+      </div>
+      <div class="trust-bar__stat fade-in">
+        <h3>50K+</h3>
+        <p>Monthly Readers</p>
+      </div>
+      <div class="trust-bar__stat fade-in">
+        <h3>100+</h3>
+        <p>Products Reviewed</p>
+      </div>
+      <div class="trust-bar__stat fade-in">
+        <h3>10K+</h3>
+        <p>Newsletter Subscribers</p>
+      </div>
+    </div>
+  </div>
+</section>

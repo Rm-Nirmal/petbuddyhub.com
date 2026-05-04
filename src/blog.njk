@@ -1,0 +1,37 @@
+---
+layout: layouts/base.njk
+pageTitle: Blog
+metaDescription: Browse all our pet care articles — training tips, health advice, nutrition guides, and honest product reviews.
+permalink: /blog/
+---
+
+<section class="page-header">
+  <div class="container">
+    <h1>The PetBuddyHub Blog</h1>
+    <p>Expert-backed articles to help you and your pet thrive together.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="filter-pills">
+      <button class="filter-pill active" data-filter="all">All</button>
+      {% for cat in categories %}
+        <button class="filter-pill" data-filter="{{ cat.slug }}">{{ cat.name }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="blog-layout">
+      <div>
+        <div class="posts-grid" style="grid-template-columns: repeat(2, 1fr);">
+          {% set postList = sanityPosts if sanityPosts.length else collections.posts %}
+          {% for post in postList %}
+            {% include "partials/post-card.njk" %}
+          {% endfor %}
+        </div>
+      </div>
+
+      {% include "partials/sidebar.njk" %}
+    </div>
+  </div>
+</section>

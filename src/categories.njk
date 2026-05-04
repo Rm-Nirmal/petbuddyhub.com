@@ -1,0 +1,66 @@
+---
+layout: layouts/base.njk
+pageTitle: Categories
+metaDescription: Browse PetBuddyHub articles by category — Training, Health, Food, Product Reviews, and Tips & Guides.
+permalink: /categories/
+---
+{% from "partials/icons.njk" import icon %}
+
+<section class="page-header">
+  <div class="container">
+    <h1>Browse by Category</h1>
+    <p>Find exactly what you're looking for, organized by topic for easy browsing.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="categories-page-grid">
+      {% for cat in categories %}
+        <a href="#{{ cat.slug }}" class="category-page-card fade-in" id="cat-{{ cat.slug }}">
+          <img src="/assets/{{ cat.image }}" alt="{{ cat.name }}" loading="lazy">
+          <div class="category-page-card__overlay">
+            <h3>{{ cat.name }}</h3>
+            <p>{{ cat.description }}</p>
+            {% set catCount = 0 %}
+            {% for post in sanityPosts %}
+              {% if post.category == cat.slug %}
+                {% set catCount = catCount + 1 %}
+              {% endif %}
+            {% endfor %}
+            <span class="category-page-card__count">{{ catCount }} {{ "article" if catCount == 1 else "articles" }}</span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% for cat in categories %}
+  {% set catPosts = [] %}
+  {% for post in sanityPosts %}
+    {% if post.category == cat.slug %}
+      {% set catPosts = (catPosts.push(post), catPosts) %}
+    {% endif %}
+  {% endfor %}
+
+  <section class="section{% if loop.index % 2 == 0 %} section--alt{% endif %}" id="{{ cat.slug }}">
+    <div class="container">
+      <div class="section__header" style="text-align: left; max-width: none; margin-bottom: 32px;">
+        <h2 style="display: inline-block;">{{ cat.name }}</h2>
+        <p>{{ cat.description }}</p>
+      </div>
+      {% if catPosts.length > 0 %}
+        <div class="posts-grid">
+          {% for post in catPosts %}
+            {% include "partials/post-card.njk" %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="empty-state">
+          <p>No articles in this category yet. Check back soon!</p>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+{% endfor %}

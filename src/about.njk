@@ -1,0 +1,68 @@
+---
+layout: layouts/base.njk
+pageTitle: About
+metaDescription: Learn why PetBuddyHub was created and meet the team behind your favorite pet care resource.
+permalink: /about/
+---
+{% from "partials/icons.njk" import icon %}
+
+<section class="page-header">
+  <div class="container">
+    <h1>About PetBuddyHub</h1>
+    <p>The story behind your trusted pet care companion.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="about-content fade-in">
+      <div>
+        <h2>Why We Started This Journey</h2>
+        <p style="color: var(--text-light); margin-bottom: 20px;">When I brought home my first puppy, I was completely overwhelmed. Every Google search led to conflicting advice. Every pet store employee recommended something different. I just wanted one reliable place with honest, expert-backed information.</p>
+        <p style="color: var(--text-light); margin-bottom: 20px;">That's why PetBuddyHub exists. We're real pet parents who've been through it all. The midnight vet visits, the chewed-up shoes, and the unconditional love that makes every challenge worth it.</p>
+        <p style="color: var(--text-light); margin-bottom: 20px;">Our mission is simple: <strong>make pet care less stressful and more joyful.</strong> Every article is researched, every product review is honest, and every tip has been tested by actual pet owners.</p>
+        <a href="/start-here/" class="btn btn-primary" style="margin-top: 12px;">Start Here {{ icon("arrow-right", 16) }}</a>
+      </div>
+      <img src="/assets/zigmarsberzins-girl-5623231_1920.jpg" alt="Pet owner bonding with dog" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__header">
+      <h2>What We Believe In</h2>
+      <p>Our core values guide everything we write and recommend.</p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card fade-in">
+        <div class="value-card__icon">{{ icon("check", 28) }}</div>
+        <h3>Honest Reviews</h3>
+        <p>We only recommend products we've personally tested or thoroughly researched. No paid fluff pieces, ever.</p>
+      </div>
+      <div class="value-card fade-in">
+        <div class="value-card__icon">{{ icon("search", 28) }}</div>
+        <h3>Evidence-Based</h3>
+        <p>Our advice is backed by veterinary science and expert consultation, never myths or old wives' tales.</p>
+      </div>
+      <div class="value-card fade-in">
+        <div class="value-card__icon">{{ icon("heart", 28) }}</div>
+        <h3>Pet-First Approach</h3>
+        <p>Your pet's wellbeing always comes first. We'll never recommend something just because it pays well.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="newsletter fade-in">
+      <h2>Join the PetBuddyHub Family</h2>
+      <p>Get expert tips and exclusive content delivered weekly.</p>
+      <form class="newsletter__form">
+        <input type="email" placeholder="Enter your email address" required aria-label="Email address">
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>

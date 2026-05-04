@@ -1,0 +1,30 @@
+# === Dependencies ===
+node_modules/
+
+# === Build Output ===
+public/
+
+# === Environment / Secrets ===
+.env
+.env.local
+.env.*.local
+
+# === OS Files ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === Logs ===
+*.log
+npm-debug.log*
+
+# === Editor Files ===
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# === Sanity Studio (sub-project) ===
+studio-petbuddyhub/node_modules/
+studio-petbuddyhub/dist/
+studio-petbuddyhub/.sanity/

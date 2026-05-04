@@ -1,0 +1,78 @@
+---
+layout: layouts/base.njk
+pageTitle: Contact Us
+metaDescription: Get in touch with the PetBuddyHub team. We'd love to hear from you!
+permalink: /contact/
+---
+
+<section class="page-header">
+  <div class="container">
+    <h1>Contact Us</h1>
+    <p>Have a question, suggestion, or just want to say hi? We'd love to hear from you.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="fade-in">
+        <h2>Send Us a Message</h2>
+        <p style="color: var(--text-light); margin-bottom: 32px;">Fill out the form below and we'll get back to you within 24 hours.</p>
+
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject" name="subject">
+              <option value="general">General Inquiry</option>
+              <option value="collaboration">Collaboration / Partnership</option>
+              <option value="product-review">Product Review Request</option>
+              <option value="feedback">Feedback</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us what's on your mind..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+
+      <div class="fade-in">
+        <div class="sidebar__section">
+          <h4 class="sidebar__title">Get in Touch</h4>
+          <div style="margin-bottom: 20px;">
+            <p style="font-weight: 600; margin-bottom: 4px;">Email</p>
+            <p style="color: var(--text-light); font-size: 0.9rem;">hello@petbuddyhub.com</p>
+          </div>
+          <div style="margin-bottom: 20px;">
+            <p style="font-weight: 600; margin-bottom: 4px;">Location</p>
+            <p style="color: var(--text-light); font-size: 0.9rem;">Working remotely, worldwide</p>
+          </div>
+          <div>
+            <p style="font-weight: 600; margin-bottom: 4px;">Response Time</p>
+            <p style="color: var(--text-light); font-size: 0.9rem;">Within 24 hours</p>
+          </div>
+        </div>
+
+        <div class="sidebar__section">
+          <h4 class="sidebar__title">Follow Us</h4>
+          <p style="font-size: 0.9rem; color: var(--text-light);">Stay connected for daily pet care tips and behind-the-scenes content.</p>
+          <div style="display: flex; gap: 12px; margin-top: 16px;">
+            <a href="#" class="btn btn-outline" style="padding: 10px 16px; font-size: 0.85rem;">Instagram</a>
+            <a href="#" class="btn btn-outline" style="padding: 10px 16px; font-size: 0.85rem;">Facebook</a>
+            <a href="#" class="btn btn-outline" style="padding: 10px 16px; font-size: 0.85rem;">Pinterest</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

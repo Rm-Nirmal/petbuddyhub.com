@@ -1,0 +1,17 @@
+[
+  { "label": "Home", "url": "/" },
+  { "label": "Blog", "url": "/blog/" },
+  {
+    "label": "Categories",
+    "url": "/categories/",
+    "children": [
+      { "label": "Training", "url": "/categories/#training" },
+      { "label": "Health", "url": "/categories/#health" },
+      { "label": "Food", "url": "/categories/#food" },
+      { "label": "Product Reviews", "url": "/categories/#product-reviews" },
+      { "label": "Tips & Guides", "url": "/categories/#tips-and-guides" }
+    ]
+  },
+  { "label": "Start Here", "url": "/start-here/" },
+  { "label": "About", "url": "/about/" }
+]

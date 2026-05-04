@@ -1,0 +1,73 @@
+---
+pagination:
+  data: sanityPosts
+  size: 1
+  alias: sanityPost
+  addAllPagesToCollections: true
+permalink: "/blog/{{ sanityPost.slug }}/"
+layout: layouts/base.njk
+eleventyComputed:
+  pageTitle: "{{ sanityPost.title }}"
+  metaDescription: "{{ sanityPost.excerpt }}"
+tags: sanityPostPage
+---
+{% from "partials/icons.njk" import icon %}
+
+<section class="page-header" style="padding-bottom: 40px;">
+  <div class="container">
+    <div class="article__meta" style="justify-content: center;">
+      <span class="post-card__category">{{ sanityPost.categoryName or sanityPost.category }}</span>
+      <span style="color: var(--text-muted); font-size: 0.9rem;">{{ sanityPost.publishedAt | dateFormat }}</span>
+      <span style="color: var(--text-muted); font-size: 0.9rem;">{{ sanityPost.bodyHtml | readingTime }}</span>
+    </div>
+    <h1>{{ sanityPost.title }}</h1>
+    {% if sanityPost.author %}
+      <p style="color: var(--text-muted); margin-top: 8px; font-size: 0.95rem;">By {{ sanityPost.author }}</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="article">
+      {% if sanityPost.featuredImage %}
+        <img src="{{ sanityPost.featuredImage }}" alt="{{ sanityPost.featuredImageAlt or sanityPost.title }}" class="article__featured-img" loading="lazy">
+      {% endif %}
+
+      {# Affiliate disclosure if links exist #}
+      {% if sanityPost.affiliateLinks and sanityPost.affiliateLinks.length %}
+        <div class="affiliate-disclosure">
+          {{ icon("shield", 16) }}
+          <span>{{ sanityPost.affiliateDisclosure or "This article contains affiliate links. We may earn a small commission at no extra cost to you. This helps us keep PetBuddyHub running." }}</span>
+        </div>
+      {% endif %}
+
+      {# Affiliate box BEFORE content #}
+      {% if sanityPost.affiliateLinks and sanityPost.affiliateLinks.length and sanityPost.affiliatePosition == "before-content" %}
+        {% include "partials/affiliate-box.njk" %}
+      {% endif %}
+
+      <div class="ad-slot">Advertisement</div>
+
+      <div class="article__content">
+        {{ sanityPost.bodyHtml | safe }}
+      </div>
+
+      {# Affiliate box AFTER content (default) #}
+      {% if sanityPost.affiliateLinks and sanityPost.affiliateLinks.length and (sanityPost.affiliatePosition != "before-content") %}
+        {% include "partials/affiliate-box.njk" %}
+      {% endif %}
+
+      <div class="ad-slot">Advertisement</div>
+
+      <div class="newsletter" style="margin-top: 48px;">
+        <h2>Enjoyed This Article?</h2>
+        <p>Get more helpful pet care tips delivered to your inbox every week.</p>
+        <form class="newsletter__form">
+          <input type="email" placeholder="Enter your email" required aria-label="Email">
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

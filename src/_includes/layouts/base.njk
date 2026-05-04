@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ metaDescription or site.description }}">
+  <meta name="author" content="{{ site.author }}">
+  <title>{{ pageTitle or title }} | {{ site.title }}</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ pageTitle or title }} | {{ site.title }}">
+  <meta property="og:description" content="{{ metaDescription or site.description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/main.css">
+
+  <!-- AdSense placeholder — replace with your actual code -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+  {% block head %}{% endblock %}
+</head>
+<body>
+  {% include "partials/navbar.njk" %}
+
+  <main id="main-content">
+    {{ content | safe }}
+  </main>
+
+  {% include "partials/footer.njk" %}
+
+  <script src="/js/main.js" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

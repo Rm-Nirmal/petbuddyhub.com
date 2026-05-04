@@ -1,0 +1,7 @@
+[
+  { "name": "Training", "slug": "training", "icon": "training", "description": "Learn effective techniques to train your furry friend.", "image": "angel1238812-dog-4633734_1920.jpg" },
+  { "name": "Health", "slug": "health", "icon": "health", "description": "Keep your pet healthy with expert veterinary advice.", "image": "stevebidmead-dog-348572_1920.jpg" },
+  { "name": "Food", "slug": "food", "icon": "food", "description": "Nutrition guides and diet tips for every pet.", "image": "14230021-fetch-4957501_1920.jpg" },
+  { "name": "Product Reviews", "slug": "product-reviews", "icon": "reviews", "description": "Honest reviews of the best pet products on the market.", "image": "carah-puppy-3979350_1920.jpg" },
+  { "name": "Tips & Guides", "slug": "tips-and-guides", "icon": "guides", "description": "Practical tips for every stage of pet ownership.", "image": "zigmarsberzins-girl-5623231_1920.jpg" }
+]

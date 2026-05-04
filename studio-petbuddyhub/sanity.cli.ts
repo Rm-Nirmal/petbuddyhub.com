@@ -5,7 +5,9 @@ export default defineCliConfig({
     projectId: '6bfh7843',
     dataset: 'production'
   },
+  studioHost: 'petbuddyhub',
   deployment: {
+    appId: 'fncnp16d7vbc4e4g59wkhebn',
     /**
      * Enable auto-updates for studios.
      * Learn more at https://www.sanity.io/docs/studio/latest-version-of-sanity#k47faf43faf56

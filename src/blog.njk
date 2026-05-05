@@ -1,32 +1,80 @@
 ---
 layout: layouts/base.njk
 pageTitle: Blog
-metaDescription: Browse all our pet care articles — training tips, health advice, nutrition guides, and honest product reviews.
+metaDescription: Browse all our pet care articles including training tips, health advice, nutrition guides, and honest product reviews.
 permalink: /blog/
 ---
+{% from "partials/icons.njk" import icon %}
 
-<section class="page-header">
+{# ===== HERO ===== #}
+<section class="blog-hero">
   <div class="container">
-    <h1>The PetBuddyHub Blog</h1>
-    <p>Expert-backed articles to help you and your pet thrive together.</p>
+    <div class="blog-hero__badge">{{ icon("training", 16) }} Our Journal</div>
+    <h1 class="blog-hero__title">The <em>PetBuddyHub</em> Blog</h1>
+    <p class="blog-hero__subtitle">Expert-backed articles to help you and your pet thrive together. Dive into training tips, health advice, nutrition guides, and honest product reviews.</p>
   </div>
+  <div class="blog-hero__shape"></div>
 </section>
 
-<section class="section">
+{# ===== FEATURED POST ===== #}
+{% set postList = sanityPosts if sanityPosts.length else collections.posts %}
+{% if postList.length > 0 %}
+  {% set feat = postList[0] %}
+  {% set featTitle = feat.data.title if feat.data else feat.title %}
+  {% set featImage = (("/assets/" + feat.data.image) | url) if feat.data else feat.featuredImage %}
+  {% set featExcerpt = feat.data.excerpt if feat.data else feat.excerpt %}
+  {% set featDate = feat.data.date if feat.data else feat.publishedAt %}
+  {% set featUrl = feat.url if feat.data else ("/blog/" + feat.slug + "/") %}
+  {% set featCategory = feat.data.categoryName if feat.data else (feat.categoryName or feat.category) %}
+
+  <section class="section">
+    <div class="container">
+      <a href="{{ featUrl | url }}" class="blog-featured fade-in">
+        <div class="blog-featured__image">
+          {% if featImage %}
+            <img src="{{ featImage }}" alt="{{ featTitle }}" loading="lazy">
+          {% endif %}
+        </div>
+        <div class="blog-featured__body">
+          <div class="blog-featured__meta">
+            <span class="blog-featured__tag">{{ featCategory }}</span>
+            <span class="blog-featured__date">{{ featDate | dateShort }}</span>
+          </div>
+          <h2 class="blog-featured__title">{{ featTitle }}</h2>
+          <p class="blog-featured__excerpt">{{ featExcerpt | truncate(200) }}</p>
+          <span class="blog-featured__link">
+            Read Full Article
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </section>
+{% endif %}
+
+{# ===== ALL POSTS ===== #}
+<section class="section section--alt">
   <div class="container">
-    <div class="filter-pills">
-      <button class="filter-pill active" data-filter="all">All</button>
-      {% for cat in categories %}
-        <button class="filter-pill" data-filter="{{ cat.slug }}">{{ cat.name }}</button>
-      {% endfor %}
+    <div class="blog-toolbar">
+      <div class="blog-toolbar__left">
+        <h2 class="blog-toolbar__title">All Articles</h2>
+        <span class="blog-toolbar__count">{{ postList | length }} articles</span>
+      </div>
+      <div class="filter-pills">
+        <button class="filter-pill active" data-filter="all">All</button>
+        {% for cat in categories %}
+          <button class="filter-pill" data-filter="{{ cat.slug }}">{{ cat.name }}</button>
+        {% endfor %}
+      </div>
     </div>
 
     <div class="blog-layout">
       <div>
         <div class="posts-grid" style="grid-template-columns: repeat(2, 1fr);">
-          {% set postList = sanityPosts if sanityPosts.length else collections.posts %}
           {% for post in postList %}
-            {% include "partials/post-card.njk" %}
+            {% if loop.index > 1 %}
+              {% include "partials/post-card.njk" %}
+            {% endif %}
           {% endfor %}
         </div>
       </div>

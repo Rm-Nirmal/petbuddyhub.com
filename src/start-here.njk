@@ -6,42 +6,59 @@ permalink: /start-here/
 ---
 {% from "partials/icons.njk" import icon %}
 
-<section class="page-header">
+{# ===== HERO ===== #}
+<section class="start-hero">
   <div class="container">
-    <h1>Welcome. Start Here</h1>
-    <p>New to pet parenting or just found us? Here's everything you need, organized and easy to follow.</p>
+    <div class="start-hero__badge">{{ icon("compass", 16) }} Your Starting Point</div>
+    <h1 class="start-hero__title">Welcome to <em>PetBuddyHub</em></h1>
+    <p class="start-hero__subtitle">New to pet parenting or just found us? Here's everything you need, organized, expert-backed, and easy to follow.</p>
   </div>
+  <div class="start-hero__shape"></div>
 </section>
 
+{# ===== HOW IT WORKS ===== #}
 <section class="section">
   <div class="container">
     <div class="section__header">
       <h2>Choose Your Path</h2>
       <p>Whether you're a brand-new pet owner or looking for specific advice, we've got you covered.</p>
     </div>
-    <div class="steps-grid">
-      <div class="step-card fade-in">
-        <div class="step-card__number">1</div>
+    <div class="start-paths">
+      <a href="{{ '/blog/10-essential-tips-for-bringing-home-your-new-puppy/' | url }}" class="start-path-card fade-in">
+        <div class="start-path-card__number">01</div>
+        <div class="start-path-card__icon">{{ icon("paw", 28) }}</div>
         <h3>New Pet Owner?</h3>
         <p>Everything you need to know about bringing home your first pet, from puppy-proofing your house to choosing the right vet.</p>
-        <a href="{{ '/blog/10-essential-tips-for-bringing-home-your-new-puppy/' | url }}" class="btn btn-ghost">Read the Guide {{ icon("arrow-right", 16) }}</a>
-      </div>
-      <div class="step-card fade-in">
-        <div class="step-card__number">2</div>
+        <span class="start-path-card__link">
+          Read the Guide
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </span>
+      </a>
+      <a href="{{ '/blog/best-dog-food-brands-2026-guide/' | url }}" class="start-path-card fade-in">
+        <div class="start-path-card__number">02</div>
+        <div class="start-path-card__icon">{{ icon("food", 28) }}</div>
         <h3>Nutrition & Food</h3>
         <p>Confused about what to feed your pet? Our nutrition guides break down the best foods, portion sizes, and dietary needs.</p>
-        <a href="{{ '/blog/best-dog-food-brands-2026-guide/' | url }}" class="btn btn-ghost">Explore Food Guides {{ icon("arrow-right", 16) }}</a>
-      </div>
-      <div class="step-card fade-in">
-        <div class="step-card__number">3</div>
+        <span class="start-path-card__link">
+          Explore Food Guides
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </span>
+      </a>
+      <a href="{{ '/categories/#training' | url }}" class="start-path-card fade-in">
+        <div class="start-path-card__number">03</div>
+        <div class="start-path-card__icon">{{ icon("training", 28) }}</div>
         <h3>Training Essentials</h3>
         <p>From basic commands to behavior issues. Learn positive training techniques that actually work.</p>
-        <a href="{{ '/categories/#training' | url }}" class="btn btn-ghost">Training Articles {{ icon("arrow-right", 16) }}</a>
-      </div>
+        <span class="start-path-card__link">
+          Training Articles
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </span>
+      </a>
     </div>
   </div>
 </section>
 
+{# ===== POPULAR ARTICLES ===== #}
 <section class="section section--alt">
   <div class="container">
     <div class="section__header">
@@ -49,7 +66,8 @@ permalink: /start-here/
       <p>These are our most-read articles that helped thousands of pet parents.</p>
     </div>
     <div class="posts-grid">
-      {% for post in collections.posts %}
+      {% set postList = sanityPosts if sanityPosts.length else collections.posts %}
+      {% for post in postList %}
         {% if loop.index <= 3 %}
           {% include "partials/post-card.njk" %}
         {% endif %}
@@ -58,23 +76,27 @@ permalink: /start-here/
   </div>
 </section>
 
+{# ===== PRODUCT REVIEWS CTA ===== #}
 <section class="section">
   <div class="container">
-    <div class="featured-banner fade-in">
-      <div>
+    <div class="start-cta fade-in">
+      <div class="start-cta__icon">{{ icon("reviews", 36) }}</div>
+      <div class="start-cta__content">
         <h2>Looking for Product Recommendations?</h2>
         <p>Check out our honest, hands-on reviews of the best pet products, from food to toys to grooming tools.</p>
       </div>
-      <a href="{{ '/categories/#product-reviews' | url }}" class="btn">See Reviews</a>
+      <a href="{{ '/categories/#product-reviews' | url }}" class="btn btn-primary">See Reviews {{ icon("arrow-right", 16) }}</a>
     </div>
   </div>
 </section>
 
+{# ===== NEWSLETTER ===== #}
 <section class="section section--alt">
   <div class="container">
-    <div class="newsletter fade-in">
+    <div class="about-newsletter fade-in">
+      <div class="about-newsletter__icon">{{ icon("mail", 40) }}</div>
       <h2>Never Miss a Tip</h2>
-      <p>Join our community and get the best pet care advice sent to your inbox weekly.</p>
+      <p>Join our community and get the best pet care advice sent to your inbox weekly. No spam, ever.</p>
       <form class="newsletter__form">
         <input type="email" placeholder="Enter your email address" required aria-label="Email address">
         <button type="submit" class="btn btn-primary">Subscribe</button>

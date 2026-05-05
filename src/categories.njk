@@ -1,66 +1,107 @@
 ---
 layout: layouts/base.njk
 pageTitle: Categories
-metaDescription: Browse PetBuddyHub articles by category — Training, Health, Food, Product Reviews, and Tips & Guides.
+metaDescription: Browse PetBuddyHub articles by category including Training, Health, Food, Product Reviews, and Tips & Guides.
 permalink: /categories/
 ---
 {% from "partials/icons.njk" import icon %}
 
-<section class="page-header">
+{# ===== HERO HEADER ===== #}
+<section class="cat-hero">
   <div class="container">
-    <h1>Browse by Category</h1>
-    <p>Find exactly what you're looking for, organized by topic for easy browsing.</p>
+    <div class="cat-hero__badge">{{ icon("compass", 16) }} Explore Topics</div>
+    <h1 class="cat-hero__title">Find What You <em>Need</em></h1>
+    <p class="cat-hero__subtitle">Dive into our curated collection of expert pet care articles, organized by topic to help you find exactly what you're looking for.</p>
   </div>
+  <div class="cat-hero__bg-shape"></div>
 </section>
 
-<section class="section">
+{# ===== QUICK NAV PILLS ===== #}
+<section class="cat-nav">
   <div class="container">
-    <div class="categories-page-grid">
+    <div class="cat-nav__inner">
       {% for cat in categories %}
-        <a href="#{{ cat.slug }}" class="category-page-card fade-in" id="cat-{{ cat.slug }}">
-          <img src="{{ ('/assets/' + cat.image) | url }}" alt="{{ cat.name }}" loading="lazy">
-          <div class="category-page-card__overlay">
-            <h3>{{ cat.name }}</h3>
-            <p>{{ cat.description }}</p>
-            {% set catCount = 0 %}
-            {% for post in sanityPosts %}
-              {% if post.category == cat.slug %}
-                {% set catCount = catCount + 1 %}
-              {% endif %}
-            {% endfor %}
-            <span class="category-page-card__count">{{ catCount }} {{ "article" if catCount == 1 else "articles" }}</span>
-          </div>
+        <a href="#{{ cat.slug }}" class="cat-nav__pill">
+          <span class="cat-nav__pill-icon">{{ icon(cat.icon, 18) }}</span>
+          {{ cat.name }}
         </a>
       {% endfor %}
     </div>
   </div>
 </section>
 
-{% for cat in categories %}
-  {% set catPosts = [] %}
-  {% for post in sanityPosts %}
-    {% if post.category == cat.slug %}
-      {% set catPosts = (catPosts.push(post), catPosts) %}
-    {% endif %}
-  {% endfor %}
+{# ===== FEATURED CATEGORIES SHOWCASE ===== #}
+<section class="section">
+  <div class="container">
+    <div class="cat-showcase">
+      {% for cat in categories %}
+        {% set catPosts = [] %}
+        {% for post in sanityPosts %}
+          {% if post.category == cat.slug %}
+            {% set catPosts = (catPosts.push(post), catPosts) %}
+          {% endif %}
+        {% endfor %}
 
-  <section class="section{% if loop.index % 2 == 0 %} section--alt{% endif %}" id="{{ cat.slug }}">
-    <div class="container">
-      <div class="section__header" style="text-align: left; max-width: none; margin-bottom: 32px;">
-        <h2 style="display: inline-block;">{{ cat.name }}</h2>
-        <p>{{ cat.description }}</p>
-      </div>
-      {% if catPosts.length > 0 %}
-        <div class="posts-grid">
-          {% for post in catPosts %}
-            {% include "partials/post-card.njk" %}
-          {% endfor %}
+        <div class="cat-section fade-in" id="{{ cat.slug }}">
+          <div class="cat-section__header">
+            <div class="cat-section__header-left">
+              <div class="cat-section__icon">{{ icon(cat.icon, 28) }}</div>
+              <div>
+                <h2 class="cat-section__title">{{ cat.name }}</h2>
+                <p class="cat-section__desc">{{ cat.description }}</p>
+              </div>
+            </div>
+            <div class="cat-section__count">
+              <span class="cat-section__count-num">{{ catPosts | length }}</span>
+              <span class="cat-section__count-label">{{ "article" if catPosts | length == 1 else "articles" }}</span>
+            </div>
+          </div>
+
+          {% if catPosts.length > 0 %}
+            <div class="cat-section__posts">
+              {% for post in catPosts %}
+                <a href="{{ ('/blog/' + post.slug + '/') | url }}" class="cat-post-card">
+                  <div class="cat-post-card__image">
+                    {% if post.featuredImage %}
+                      <img src="{{ post.featuredImage }}" alt="{{ post.title }}" loading="lazy">
+                    {% endif %}
+                  </div>
+                  <div class="cat-post-card__body">
+                    <span class="cat-post-card__date">{{ post.publishedAt | dateShort }}</span>
+                    <h3 class="cat-post-card__title">{{ post.title }}</h3>
+                    <p class="cat-post-card__excerpt">{{ post.excerpt | truncate(100) }}</p>
+                    <span class="cat-post-card__link">
+                      Read Article
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </span>
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="cat-section__empty">
+              <div class="cat-section__empty-icon">{{ icon(cat.icon, 32) }}</div>
+              <p>New articles coming soon. Stay tuned!</p>
+            </div>
+          {% endif %}
         </div>
-      {% else %}
-        <div class="empty-state">
-          <p>No articles in this category yet. Check back soon!</p>
-        </div>
-      {% endif %}
+      {% endfor %}
     </div>
-  </section>
-{% endfor %}
+  </div>
+</section>
+
+{# ===== CTA BANNER ===== #}
+<section class="section section--alt">
+  <div class="container">
+    <div class="cat-cta fade-in">
+      <div class="cat-cta__content">
+        <h2>Can't Find What You Need?</h2>
+        <p>Our team of pet care experts is here to help. Reach out and we'll point you in the right direction.</p>
+      </div>
+      <div class="cat-cta__actions">
+        <a href="{{ '/contact/' | url }}" class="btn btn-primary">Contact Us {{ icon("arrow-right", 18) }}</a>
+        <a href="{{ '/blog/' | url }}" class="btn btn-outline">Browse All Articles</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -6,59 +6,126 @@ permalink: /about/
 ---
 {% from "partials/icons.njk" import icon %}
 
-<section class="page-header">
+{# ===== HERO ===== #}
+<section class="about-hero">
   <div class="container">
-    <h1>About PetBuddyHub</h1>
-    <p>The story behind your trusted pet care companion.</p>
+    <div class="about-hero__badge">{{ icon("heart", 16) }} Our Story</div>
+    <h1 class="about-hero__title">We're <em>PetBuddyHub</em></h1>
+    <p class="about-hero__subtitle">Real pet parents creating the resource we wish we had. Honest, expert-backed, and made with love.</p>
   </div>
+  <div class="about-hero__shape"></div>
 </section>
 
+{# ===== OUR STORY ===== #}
 <section class="section">
   <div class="container">
-    <div class="about-content fade-in">
-      <div>
-        <h2>Why We Started This Journey</h2>
-        <p style="color: var(--text-light); margin-bottom: 20px;">When I brought home my first puppy, I was completely overwhelmed. Every Google search led to conflicting advice. Every pet store employee recommended something different. I just wanted one reliable place with honest, expert-backed information.</p>
-        <p style="color: var(--text-light); margin-bottom: 20px;">That's why PetBuddyHub exists. We're real pet parents who've been through it all. The midnight vet visits, the chewed-up shoes, and the unconditional love that makes every challenge worth it.</p>
-        <p style="color: var(--text-light); margin-bottom: 20px;">Our mission is simple: <strong>make pet care less stressful and more joyful.</strong> Every article is researched, every product review is honest, and every tip has been tested by actual pet owners.</p>
-        <a href="{{ '/start-here/' | url }}" class="btn btn-primary" style="margin-top: 12px;">Start Here {{ icon("arrow-right", 16) }}</a>
+    <div class="about-story fade-in">
+      <div class="about-story__content">
+        <div class="about-story__label">Why We Started</div>
+        <h2>A Journey Born From <em>Love</em></h2>
+        <p>When I brought home my first puppy, I was completely overwhelmed. Every Google search led to conflicting advice. Every pet store employee recommended something different. I just wanted one reliable place with honest, expert-backed information.</p>
+        <p>That's why PetBuddyHub exists. We're real pet parents who've been through it all. The midnight vet visits, the chewed-up shoes, and the unconditional love that makes every challenge worth it.</p>
+        <p>Our mission is simple: <strong>make pet care less stressful and more joyful.</strong> Every article is researched, every product review is honest, and every tip has been tested by actual pet owners.</p>
+        <a href="{{ '/start-here/' | url }}" class="btn btn-primary" style="margin-top: 16px;">Start Here {{ icon("arrow-right", 16) }}</a>
       </div>
-      <img src="{{ '/assets/zigmarsberzins-girl-5623231_1920.jpg' | url }}" alt="Pet owner bonding with dog" loading="lazy">
+      <div class="about-story__image">
+        <img src="{{ '/assets/zigmarsberzins-girl-5623231_1920.jpg' | url }}" alt="Pet owner bonding with dog" loading="lazy">
+        <div class="about-story__image-badge">
+          <span class="about-story__image-badge-num">5+</span>
+          <span class="about-story__image-badge-text">Years of Experience</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+{# ===== WHAT WE COVER ===== #}
 <section class="section section--alt">
+  <div class="container">
+    <div class="section__header">
+      <h2>What We Cover</h2>
+      <p>From first-time pet owners to seasoned animal lovers, we've got content for every stage of your journey.</p>
+    </div>
+    <div class="about-topics-grid">
+      <div class="about-topic fade-in">
+        <div class="about-topic__icon">{{ icon("training", 26) }}</div>
+        <div class="about-topic__content">
+          <h3>Training & Behavior</h3>
+          <p>Step-by-step guides for basic commands, leash training, socialization, and solving common behavior issues with positive techniques.</p>
+        </div>
+      </div>
+      <div class="about-topic fade-in">
+        <div class="about-topic__icon">{{ icon("health", 26) }}</div>
+        <div class="about-topic__content">
+          <h3>Health & Wellness</h3>
+          <p>Veterinary-reviewed articles covering vaccinations, preventive care, common symptoms, and when to visit the vet.</p>
+        </div>
+      </div>
+      <div class="about-topic fade-in">
+        <div class="about-topic__icon">{{ icon("food", 26) }}</div>
+        <div class="about-topic__content">
+          <h3>Nutrition & Diet</h3>
+          <p>Comprehensive food guides, ingredient breakdowns, portion advice, and diet plans tailored for different breeds and life stages.</p>
+        </div>
+      </div>
+      <div class="about-topic fade-in">
+        <div class="about-topic__icon">{{ icon("reviews", 26) }}</div>
+        <div class="about-topic__content">
+          <h3>Product Reviews</h3>
+          <p>Hands-on, unbiased reviews of pet food, toys, grooming tools, tech gadgets, and everything your pet might need.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ===== VALUES ===== #}
+<section class="section">
   <div class="container">
     <div class="section__header">
       <h2>What We Believe In</h2>
       <p>Our core values guide everything we write and recommend.</p>
     </div>
-    <div class="values-grid">
-      <div class="value-card fade-in">
-        <div class="value-card__icon">{{ icon("check", 28) }}</div>
-        <h3>Honest Reviews</h3>
-        <p>We only recommend products we've personally tested or thoroughly researched. No paid fluff pieces, ever.</p>
+    <div class="about-values-grid">
+      <div class="about-value-card fade-in">
+        <div class="about-value-card__icon">{{ icon("check", 28) }}</div>
+        <div class="about-value-card__content">
+          <h3>Honest Reviews</h3>
+          <p>We only recommend products we've personally tested or thoroughly researched. No paid fluff pieces, ever.</p>
+        </div>
       </div>
-      <div class="value-card fade-in">
-        <div class="value-card__icon">{{ icon("search", 28) }}</div>
-        <h3>Evidence-Based</h3>
-        <p>Our advice is backed by veterinary science and expert consultation, never myths or old wives' tales.</p>
+      <div class="about-value-card fade-in">
+        <div class="about-value-card__icon">{{ icon("search", 28) }}</div>
+        <div class="about-value-card__content">
+          <h3>Evidence-Based</h3>
+          <p>Our advice is backed by veterinary science and expert consultation, never myths or old wives' tales.</p>
+        </div>
       </div>
-      <div class="value-card fade-in">
-        <div class="value-card__icon">{{ icon("heart", 28) }}</div>
-        <h3>Pet-First Approach</h3>
-        <p>Your pet's wellbeing always comes first. We'll never recommend something just because it pays well.</p>
+      <div class="about-value-card fade-in">
+        <div class="about-value-card__icon">{{ icon("heart", 28) }}</div>
+        <div class="about-value-card__content">
+          <h3>Pet-First Approach</h3>
+          <p>Your pet's wellbeing always comes first. We'll never recommend something just because it pays well.</p>
+        </div>
+      </div>
+      <div class="about-value-card fade-in">
+        <div class="about-value-card__icon">{{ icon("shield", 28) }}</div>
+        <div class="about-value-card__content">
+          <h3>Trusted Community</h3>
+          <p>Join thousands of pet parents who trust us for reliable, well-researched guidance and product recommendations.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section">
+{# ===== NEWSLETTER CTA ===== #}
+<section class="section section--alt">
   <div class="container">
-    <div class="newsletter fade-in">
+    <div class="about-newsletter fade-in">
+      <div class="about-newsletter__icon">{{ icon("mail", 40) }}</div>
       <h2>Join the PetBuddyHub Family</h2>
-      <p>Get expert tips and exclusive content delivered weekly.</p>
+      <p>Get expert tips, exclusive content, and the best product deals delivered to your inbox weekly. No spam, ever.</p>
       <form class="newsletter__form">
         <input type="email" placeholder="Enter your email address" required aria-label="Email address">
         <button type="submit" class="btn btn-primary">Subscribe</button>

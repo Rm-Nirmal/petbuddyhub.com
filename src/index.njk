@@ -6,27 +6,28 @@ metaDescription: Expert pet care tips, training guides, honest product reviews, 
 {% from "partials/icons.njk" import icon %}
 
 {# ===== HERO ===== #}
-<section class="hero">
+<section class="home-hero">
   <div class="container">
-    <div class="hero__inner">
-      <div class="hero__text">
-        <div class="hero__badge">
+    <div class="home-hero__inner">
+      <div class="home-hero__text">
+        <div class="home-hero__badge">
           {{ icon("paw", 16) }} Your Trusted Pet Care Hub
         </div>
-        <h1 class="hero__title">Give Your Pet The <em>Best Life</em> Possible</h1>
-        <p class="hero__subtitle">Expert-backed training tips, nutrition guides, and honest product reviews. Everything you need to be the best pet parent.</p>
-        <div class="hero__ctas">
+        <h1 class="home-hero__title">Give Your Pet The <em>Best Life</em> Possible</h1>
+        <p class="home-hero__subtitle">Expert-backed training tips, nutrition guides, and honest product reviews. Everything you need to be the best pet parent.</p>
+        <div class="home-hero__ctas">
           <a href="{{ '/start-here/' | url }}" class="btn btn-primary">
             Start Here {{ icon("arrow-right", 18) }}
           </a>
           <a href="{{ '/blog/' | url }}" class="btn btn-outline">Browse Articles</a>
         </div>
       </div>
-      <div class="hero__image">
+      <div class="home-hero__image">
         <img src="{{ '/assets/zigmarsberzins-girl-5623231_1920.jpg' | url }}" alt="Happy pet owner with dog" width="580" height="400">
       </div>
     </div>
   </div>
+  <div class="home-hero__shape"></div>
 </section>
 
 {# ===== CATEGORIES ===== #}
@@ -36,12 +37,15 @@ metaDescription: Expert pet care tips, training guides, honest product reviews, 
       <h2>Explore by Category</h2>
       <p>Find exactly what you need, from training basics to expert product reviews.</p>
     </div>
-    <div class="categories-grid">
+    <div class="home-categories">
       {% for cat in categories %}
-        <a href="{{ ('/categories/#' + cat.slug) | url }}" class="category-card fade-in">
-          <div class="category-card__icon">{{ icon(cat.icon, 26) }}</div>
-          <div class="category-card__title">{{ cat.name }}</div>
-          <div class="category-card__count">View articles</div>
+        <a href="{{ ('/categories/#' + cat.slug) | url }}" class="home-cat-card fade-in">
+          <div class="home-cat-card__icon">{{ icon(cat.icon, 24) }}</div>
+          <div class="home-cat-card__content">
+            <div class="home-cat-card__title">{{ cat.name }}</div>
+            <div class="home-cat-card__desc">{{ cat.description }}</div>
+          </div>
+          <div class="home-cat-card__arrow">{{ icon("arrow-right", 16) }}</div>
         </a>
       {% endfor %}
     </div>
@@ -51,9 +55,12 @@ metaDescription: Expert pet care tips, training guides, honest product reviews, 
 {# ===== LATEST POSTS ===== #}
 <section class="section section--alt">
   <div class="container">
-    <div class="section__header">
-      <h2>Latest Articles</h2>
-      <p>Fresh insights and tips from our pet care experts.</p>
+    <div class="home-section-bar">
+      <div>
+        <h2 class="home-section-bar__title">Latest Articles</h2>
+        <p class="home-section-bar__desc">Fresh insights and tips from our pet care experts.</p>
+      </div>
+      <a href="{{ '/blog/' | url }}" class="btn btn-outline">View All {{ icon("arrow-right", 16) }}</a>
     </div>
     <div class="posts-grid">
       {% set postList = sanityPosts if sanityPosts.length else collections.posts %}
@@ -63,21 +70,52 @@ metaDescription: Expert pet care tips, training guides, honest product reviews, 
         {% endif %}
       {% endfor %}
     </div>
-    <div style="text-align:center; margin-top:48px;">
-      <a href="{{ '/blog/' | url }}" class="btn btn-outline">View All Articles</a>
+  </div>
+</section>
+
+{# ===== HOW WE HELP ===== #}
+<section class="section">
+  <div class="container">
+    <div class="section__header">
+      <h2>How We Help You</h2>
+      <p>PetBuddyHub is designed to make pet parenting easier at every step of the journey.</p>
+    </div>
+    <div class="home-help-grid">
+      <div class="home-help-card fade-in">
+        <div class="home-help-card__num">01</div>
+        <div class="home-help-card__icon">{{ icon("search", 26) }}</div>
+        <h3>Research & Verify</h3>
+        <p>Every article is backed by veterinary science and expert consultation. We fact-check so you don't have to.</p>
+      </div>
+      <div class="home-help-card fade-in">
+        <div class="home-help-card__num">02</div>
+        <div class="home-help-card__icon">{{ icon("reviews", 26) }}</div>
+        <h3>Test & Review</h3>
+        <p>We personally test products before recommending them. Our reviews are honest, detailed, and never sponsored.</p>
+      </div>
+      <div class="home-help-card fade-in">
+        <div class="home-help-card__num">03</div>
+        <div class="home-help-card__icon">{{ icon("training", 26) }}</div>
+        <h3>Guide & Educate</h3>
+        <p>From beginner basics to advanced training, our step-by-step guides make learning simple and enjoyable.</p>
+      </div>
     </div>
   </div>
 </section>
 
 {# ===== FEATURED BANNER ===== #}
-<section class="section">
+<section class="section section--alt">
   <div class="container">
-    <div class="featured-banner fade-in">
-      <div>
+    <div class="home-banner fade-in">
+      <div class="home-banner__content">
+        <div class="home-banner__badge">{{ icon("compass", 16) }} Getting Started</div>
         <h2>New Pet Parent? Start Here</h2>
         <p>We've curated the ultimate beginner's guide with everything you need to know, from choosing the right food to mastering basic training.</p>
+        <a href="{{ '/start-here/' | url }}" class="btn">Read the Guide {{ icon("arrow-right", 16) }}</a>
       </div>
-      <a href="{{ '/start-here/' | url }}" class="btn">Read the Guide</a>
+      <div class="home-banner__visual">
+        <img src="{{ '/assets/carah-puppy-3979350_1920.jpg' | url }}" alt="Cute puppy" loading="lazy">
+      </div>
     </div>
   </div>
 </section>
@@ -90,37 +128,14 @@ metaDescription: Expert pet care tips, training guides, honest product reviews, 
 {# ===== NEWSLETTER ===== #}
 <section class="section">
   <div class="container">
-    <div class="newsletter fade-in">
-      <h2>Join 10,000+ Happy Pet Parents</h2>
+    <div class="about-newsletter fade-in">
+      <div class="about-newsletter__icon">{{ icon("mail", 40) }}</div>
+      <h2>Join the PetBuddyHub Family</h2>
       <p>Weekly tips, exclusive guides, and the best product deals delivered straight to your inbox. No spam, ever.</p>
       <form class="newsletter__form" id="newsletter-form">
         <input type="email" placeholder="Enter your email address" required aria-label="Email address">
         <button type="submit" class="btn btn-primary">Subscribe</button>
       </form>
-    </div>
-  </div>
-</section>
-
-{# ===== TRUST BAR ===== #}
-<section class="trust-bar">
-  <div class="container">
-    <div class="trust-bar__stats">
-      <div class="trust-bar__stat fade-in">
-        <h3>200+</h3>
-        <p>Expert Articles</p>
-      </div>
-      <div class="trust-bar__stat fade-in">
-        <h3>50K+</h3>
-        <p>Monthly Readers</p>
-      </div>
-      <div class="trust-bar__stat fade-in">
-        <h3>100+</h3>
-        <p>Products Reviewed</p>
-      </div>
-      <div class="trust-bar__stat fade-in">
-        <h3>10K+</h3>
-        <p>Newsletter Subscribers</p>
-      </div>
     </div>
   </div>
 </section>

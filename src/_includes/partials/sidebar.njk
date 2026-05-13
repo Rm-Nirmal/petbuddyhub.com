@@ -10,14 +10,6 @@
     </ul>
   </div>
 
-  <!-- Newsletter -->
-  <div class="sidebar__section">
-    <h4 class="sidebar__title">Newsletter</h4>
-    <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 16px;">Get weekly pet care tips & exclusive guides.</p>
-    <input type="email" placeholder="Your email" style="width:100%; padding: 12px 16px; border: 2px solid var(--border); border-radius: var(--radius-sm); font-family: var(--font-body); margin-bottom: 10px; outline: none;">
-    <button class="btn btn-primary" style="width:100%; justify-content: center;">Subscribe</button>
-  </div>
-
   <!-- Ad Slot -->
   <div class="ad-slot">Advertisement</div>
 
@@ -42,5 +34,13 @@
         </div>
       {% endif %}
     {% endfor %}
+  </div>
+
+  <!-- Start Here CTA -->
+  <div class="sidebar__section sidebar__cta">
+    <div class="sidebar__cta-icon">{{ icon("compass", 24) }}</div>
+    <h4 class="sidebar__title" style="border: none; padding: 0; margin-bottom: 8px;">New Here?</h4>
+    <p style="font-size: 0.88rem; color: var(--text-light); margin-bottom: 16px; line-height: 1.6;">Check out our beginner's guide to get started on your pet care journey.</p>
+    <a href="{{ '/start-here/' | url }}" class="btn btn-primary" style="width: 100%; justify-content: center;">Start Here {{ icon("arrow-right", 14) }}</a>
   </div>
 </aside>

@@ -90,17 +90,25 @@ permalink: /start-here/
   </div>
 </section>
 
-{# ===== NEWSLETTER ===== #}
+{# ===== FEATURED CATEGORIES ===== #}
 <section class="section section--alt">
   <div class="container">
-    <div class="about-newsletter fade-in">
-      <div class="about-newsletter__icon">{{ icon("mail", 40) }}</div>
-      <h2>Never Miss a Tip</h2>
-      <p>Join our community and get the best pet care advice sent to your inbox weekly. No spam, ever.</p>
-      <form class="newsletter__form">
-        <input type="email" placeholder="Enter your email address" required aria-label="Email address">
-        <button type="submit" class="btn btn-primary">Subscribe</button>
-      </form>
+    <div class="section__header">
+      <h2>Explore All Categories</h2>
+      <p>Browse our organized collection of pet care content by topic.</p>
+    </div>
+    <div class="home-categories">
+      {% for cat in categories %}
+        <a href="{{ ('/categories/#' + cat.slug) | url }}" class="home-cat-card fade-in">
+          <div class="home-cat-card__icon">{{ icon(cat.icon, 24) }}</div>
+          <div class="home-cat-card__content">
+            <div class="home-cat-card__title">{{ cat.name }}</div>
+            <div class="home-cat-card__desc">{{ cat.description }}</div>
+          </div>
+          <div class="home-cat-card__arrow">{{ icon("arrow-right", 16) }}</div>
+        </a>
+      {% endfor %}
     </div>
   </div>
 </section>
+

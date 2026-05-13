@@ -54,17 +54,25 @@
         </div>
 
         <div class="footer__col">
-          <h4 class="footer__heading">Stay Updated</h4>
-          <p class="footer__col-desc">Get the latest pet care tips delivered to your inbox weekly.</p>
-          <div class="footer__newsletter">
-            <div class="footer__newsletter-input-wrap">
-              <input type="email" placeholder="Your email address" aria-label="Email for newsletter">
-              <button class="footer__newsletter-btn" aria-label="Subscribe">
-                {{ icon("arrow-right", 18) }}
-              </button>
-            </div>
-            <span class="footer__newsletter-note">No spam, unsubscribe anytime.</span>
-          </div>
+          <h4 class="footer__heading">Why PetBuddyHub?</h4>
+          <p class="footer__col-desc">Simple, practical, and research-based pet care information for everyday pet owners.</p>
+          <ul class="footer__links footer__trust-list">
+            <li>
+              <a href="{{ '/about/' | url }}">
+                {{ icon("check", 14) }} Expert-reviewed content
+              </a>
+            </li>
+            <li>
+              <a href="{{ '/about/' | url }}">
+                {{ icon("check", 14) }} Beginner-friendly guides
+              </a>
+            </li>
+            <li>
+              <a href="{{ '/start-here/' | url }}">
+                {{ icon("check", 14) }} Updated regularly
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
 
@@ -72,9 +80,11 @@
       <div class="footer__bottom">
         <p>&copy; {{ 2026 }} {{ site.title }}. All rights reserved.</p>
         <div class="footer__bottom-links">
-          <a href="#">Privacy Policy</a>
+          <a href="{{ '/privacy-policy/' | url }}">Privacy Policy</a>
           <span class="footer__dot"></span>
-          <a href="#">Terms of Service</a>
+          <a href="{{ '/disclaimer/' | url }}">Disclaimer</a>
+          <span class="footer__dot"></span>
+          <a href="{{ '/contact/' | url }}">Contact</a>
         </div>
       </div>
     </div>

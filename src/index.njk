@@ -17,7 +17,7 @@ metaDescription: Expert pet care tips, training guides, honest product reviews, 
         <p class="home-hero__subtitle">Expert-backed training tips, nutrition guides, and honest product reviews. Everything you need to be the best pet parent.</p>
         <div class="home-hero__ctas">
           <a href="{{ '/start-here/' | url }}" class="btn btn-primary">
-            Start Here {{ icon("arrow-right", 18) }}
+            Explore Pet Care Guides {{ icon("arrow-right", 18) }}
           </a>
           <a href="{{ '/blog/' | url }}" class="btn btn-outline">Browse Articles</a>
         </div>
@@ -29,6 +29,47 @@ metaDescription: Expert pet care tips, training guides, honest product reviews, 
   </div>
   <div class="home-hero__shape"></div>
 </section>
+
+{# ===== TRUST BAR ===== #}
+<section class="home-trust">
+  <div class="container">
+    <div class="home-trust__grid">
+      <div class="home-trust__item fade-in">
+        <div class="home-trust__icon">{{ icon("shield", 22) }}</div>
+        <div>
+          <div class="home-trust__label">Trusted Content</div>
+          <div class="home-trust__desc">Expert-reviewed pet care information</div>
+        </div>
+      </div>
+      <div class="home-trust__item fade-in">
+        <div class="home-trust__icon">{{ icon("bookmark", 22) }}</div>
+        <div>
+          <div class="home-trust__label">Beginner-Friendly</div>
+          <div class="home-trust__desc">Easy-to-follow guides for new owners</div>
+        </div>
+      </div>
+      <div class="home-trust__item fade-in">
+        <div class="home-trust__icon">{{ icon("search", 22) }}</div>
+        <div>
+          <div class="home-trust__label">Research-Backed</div>
+          <div class="home-trust__desc">Based on veterinary science & data</div>
+        </div>
+      </div>
+      <div class="home-trust__item fade-in">
+        <div class="home-trust__icon">{{ icon("refresh", 22) }}</div>
+        <div>
+          <div class="home-trust__label">Updated Regularly</div>
+          <div class="home-trust__desc">Fresh content added every week</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ===== PAW DIVIDER ===== #}
+<div class="paw-divider">
+  <span>{{ icon("paw", 18) }}</span>
+</div>
 
 {# ===== CATEGORIES ===== #}
 <section class="section">
@@ -120,22 +161,59 @@ metaDescription: Expert pet care tips, training guides, honest product reviews, 
   </div>
 </section>
 
-{# ===== AD SLOT ===== #}
-<div class="container">
-  <div class="ad-slot">Advertisement</div>
-</div>
-
-{# ===== NEWSLETTER ===== #}
+{# ===== FEATURED CATEGORIES SHOWCASE ===== #}
 <section class="section">
   <div class="container">
-    <div class="about-newsletter fade-in">
-      <div class="about-newsletter__icon">{{ icon("mail", 40) }}</div>
-      <h2>Join the PetBuddyHub Family</h2>
-      <p>Weekly tips, exclusive guides, and the best product deals delivered straight to your inbox. No spam, ever.</p>
-      <form class="newsletter__form" id="newsletter-form">
-        <input type="email" placeholder="Enter your email address" required aria-label="Email address">
-        <button type="submit" class="btn btn-primary">Subscribe</button>
-      </form>
+    <div class="section__header">
+      <h2>Browse Our Top Categories</h2>
+      <p>Dive into our most popular topics and find exactly what you're looking for.</p>
+    </div>
+    <div class="home-featured-cats">
+      {% for cat in categories %}
+        {% if loop.index <= 4 %}
+          <a href="{{ ('/categories/#' + cat.slug) | url }}" class="home-featured-cat fade-in">
+            <div class="home-featured-cat__image">
+              <img src="{{ ('/assets/' + cat.image) | url }}" alt="{{ cat.name }}" loading="lazy">
+            </div>
+            <div class="home-featured-cat__overlay">
+              <div class="home-featured-cat__icon">{{ icon(cat.icon, 22) }}</div>
+              <h3>{{ cat.name }}</h3>
+              <p>{{ cat.description }}</p>
+              <span class="home-featured-cat__link">Explore {{ icon("arrow-right", 14) }}</span>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ===== WHY TRUST US ===== #}
+<section class="section section--alt">
+  <div class="container">
+    <div class="home-why-trust fade-in">
+      <div class="home-why-trust__icon">{{ icon("paw", 32) }}</div>
+      <h2>Why Pet Parents Trust Us</h2>
+      <p class="home-why-trust__desc">At PetBuddyHub, we focus on simple, practical, and research-based pet care information for everyday pet owners. Every piece of content is carefully crafted to help you and your pet thrive together.</p>
+      <div class="home-why-trust__features">
+        <div class="home-why-trust__feature">
+          <span class="home-why-trust__check">{{ icon("check", 16) }}</span>
+          <span>Veterinary-reviewed articles</span>
+        </div>
+        <div class="home-why-trust__feature">
+          <span class="home-why-trust__check">{{ icon("check", 16) }}</span>
+          <span>No sponsored content</span>
+        </div>
+        <div class="home-why-trust__feature">
+          <span class="home-why-trust__check">{{ icon("check", 16) }}</span>
+          <span>Practical, actionable advice</span>
+        </div>
+        <div class="home-why-trust__feature">
+          <span class="home-why-trust__check">{{ icon("check", 16) }}</span>
+          <span>Written by real pet owners</span>
+        </div>
+      </div>
+      <a href="{{ '/about/' | url }}" class="btn btn-primary" style="margin-top: 12px;">Learn More About Us {{ icon("arrow-right", 16) }}</a>
     </div>
   </div>
 </section>

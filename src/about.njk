@@ -119,17 +119,33 @@ permalink: /about/
   </div>
 </section>
 
-{# ===== NEWSLETTER CTA ===== #}
+{# ===== WHY TRUST US ===== #}
 <section class="section section--alt">
   <div class="container">
-    <div class="about-newsletter fade-in">
-      <div class="about-newsletter__icon">{{ icon("mail", 40) }}</div>
-      <h2>Join the PetBuddyHub Family</h2>
-      <p>Get expert tips, exclusive content, and the best product deals delivered to your inbox weekly. No spam, ever.</p>
-      <form class="newsletter__form">
-        <input type="email" placeholder="Enter your email address" required aria-label="Email address">
-        <button type="submit" class="btn btn-primary">Subscribe</button>
-      </form>
+    <div class="home-why-trust fade-in">
+      <div class="home-why-trust__icon">{{ icon("shield", 32) }}</div>
+      <h2>Why Trust PetBuddyHub?</h2>
+      <p class="home-why-trust__desc">At PetBuddyHub, we focus on simple, practical, and research-based pet care information for everyday pet owners. Our team combines real-world pet ownership experience with veterinary-reviewed content to ensure every article meets the highest standards of accuracy.</p>
+      <div class="home-why-trust__features">
+        <div class="home-why-trust__feature">
+          <span class="home-why-trust__check">{{ icon("check", 16) }}</span>
+          <span>Veterinary-reviewed articles</span>
+        </div>
+        <div class="home-why-trust__feature">
+          <span class="home-why-trust__check">{{ icon("check", 16) }}</span>
+          <span>No sponsored content</span>
+        </div>
+        <div class="home-why-trust__feature">
+          <span class="home-why-trust__check">{{ icon("check", 16) }}</span>
+          <span>Practical, actionable advice</span>
+        </div>
+        <div class="home-why-trust__feature">
+          <span class="home-why-trust__check">{{ icon("check", 16) }}</span>
+          <span>Written by real pet owners</span>
+        </div>
+      </div>
+      <a href="{{ '/start-here/' | url }}" class="btn btn-primary" style="margin-top: 12px;">Start Your Journey {{ icon("arrow-right", 16) }}</a>
     </div>
   </div>
 </section>
+

@@ -7,11 +7,37 @@
   <meta name="author" content="{{ site.author }}">
   <title>{{ pageTitle or title }} | {{ site.title }}</title>
 
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+
   <!-- Open Graph -->
   <meta property="og:title" content="{{ pageTitle or title }} | {{ site.title }}">
   <meta property="og:description" content="{{ metaDescription or site.description }}">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="{% if layout == 'layouts/post.njk' or tags == 'sanityPostPage' %}article{% else %}website{% endif %}">
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:site_name" content="{{ site.title }}">
+  {% if ogImage %}
+  <meta property="og:image" content="{{ ogImage }}">
+  {% elif featuredImage %}
+  <meta property="og:image" content="{{ featuredImage }}">
+  {% else %}
+  <meta property="og:image" content="{{ site.url }}/assets/zigmarsberzins-girl-5623231_1920.jpg">
+  {% endif %}
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ pageTitle or title }} | {{ site.title }}">
+  <meta name="twitter:description" content="{{ metaDescription or site.description }}">
+  {% if ogImage %}
+  <meta name="twitter:image" content="{{ ogImage }}">
+  {% elif featuredImage %}
+  <meta name="twitter:image" content="{{ featuredImage }}">
+  {% else %}
+  <meta name="twitter:image" content="{{ site.url }}/assets/zigmarsberzins-girl-5623231_1920.jpg">
+  {% endif %}
 
   <!-- Preconnect to Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +48,22 @@
 
   <!-- AdSense placeholder — replace with your actual code -->
   <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{ site.title }}",
+    "url": "{{ site.url }}",
+    "description": "{{ site.description }}",
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ site.title }}",
+      "url": "{{ site.url }}"
+    }
+  }
+  </script>
 
   {% block head %}{% endblock %}
 </head>

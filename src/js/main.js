@@ -118,25 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Newsletter Form ---
-  const forms = document.querySelectorAll('.newsletter__form, #newsletter-form');
-  forms.forEach(form => {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const input = form.querySelector('input[type="email"]');
-      if (input && input.value) {
-        const btn = form.querySelector('button');
-        const originalText = btn.textContent;
-        btn.textContent = '✓ Subscribed!';
-        btn.style.background = '#4CAF50';
-        input.value = '';
-        setTimeout(() => {
-          btn.textContent = originalText;
-          btn.style.background = '';
-        }, 3000);
-      }
-    });
-  });
+  // --- Newsletter Form (Disabled — will re-enable when newsletter is added back) ---
+  // Newsletter forms have been temporarily removed per content strategy.
+  // This handler can be restored when the newsletter is reintroduced.
 
   // --- Contact Form (Web3Forms) ---
   const contactForm = document.getElementById('contact-form');

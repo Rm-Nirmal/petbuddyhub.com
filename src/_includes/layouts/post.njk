@@ -2,12 +2,33 @@
 layout: layouts/base.njk
 pageTitle: "{{ title }}"
 ---
+{% from "partials/icons.njk" import icon %}
 
-<section class="page-header" style="padding-bottom: 40px;">
+{# ===== BREADCRUMB ===== #}
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <div class="container">
+    <ol class="breadcrumb__list">
+      <li><a href="{{ '/' | url }}">{{ icon("home", 14) }} Home</a></li>
+      <li>{{ icon("chevron-right", 12) }}</li>
+      <li><a href="{{ '/blog/' | url }}">Blog</a></li>
+      {% if categoryName or category %}
+      <li>{{ icon("chevron-right", 12) }}</li>
+      <li><a href="{{ '/categories/' | url }}">{{ categoryName or category }}</a></li>
+      {% endif %}
+      <li>{{ icon("chevron-right", 12) }}</li>
+      <li class="breadcrumb__current" aria-current="page">{{ title | truncate(40) }}</li>
+    </ol>
+  </div>
+</nav>
+
+<section class="page-header" style="padding-bottom: 40px; padding-top: 40px;">
   <div class="container">
     <div class="article__meta" style="justify-content: center;">
       <span class="post-card__category">{{ categoryName or category }}</span>
-      <span style="color: var(--text-muted); font-size: 0.9rem;">{{ date | dateFormat }}</span>
+      <span class="article__date-info">
+        {{ icon("calendar", 14) }}
+        <time datetime="{{ date }}">{{ date | dateFormat }}</time>
+      </span>
       <span style="color: var(--text-muted); font-size: 0.9rem;">{{ content | readingTime }}</span>
     </div>
     <h1>{{ title }}</h1>
@@ -25,16 +46,139 @@ pageTitle: "{{ title }}"
         {{ content | safe }}
       </div>
 
+      {# ===== ARTICLE DATES ===== #}
+      {% if date %}
+      <div class="article__dates">
+        <div class="article__date-item">
+          {{ icon("calendar", 16) }}
+          <span><strong>Published:</strong> {{ date | dateFormat }}</span>
+        </div>
+        {% if updated %}
+        <div class="article__date-item">
+          {{ icon("edit", 16) }}
+          <span><strong>Updated:</strong> {{ updated | dateFormat }}</span>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+
       <div class="ad-slot">Advertisement</div>
 
-      <div class="newsletter" style="margin-top: 48px;">
-        <h2>Enjoyed This Article?</h2>
-        <p>Get more helpful pet care tips delivered to your inbox every week.</p>
-        <form class="newsletter__form">
-          <input type="email" placeholder="Enter your email" required aria-label="Email">
-          <button type="submit" class="btn btn-primary">Subscribe</button>
-        </form>
+      {# ===== AUTHOR BOX ===== #}
+      <div class="author-box fade-in">
+        <div class="author-box__avatar">
+          {{ icon("user", 32) }}
+        </div>
+        <div class="author-box__content">
+          <div class="author-box__label">Written by</div>
+          <h4 class="author-box__name">The PetBuddyHub Team</h4>
+          <p class="author-box__bio">We're a team of passionate pet parents and animal lovers dedicated to providing honest, research-backed pet care advice. Every article is carefully reviewed to ensure accuracy and helpfulness.</p>
+          <a href="{{ '/about/' | url }}" class="author-box__link">Learn more about our team {{ icon("arrow-right", 14) }}</a>
+        </div>
+      </div>
+
+      {# ===== RELATED / RECENT POSTS ===== #}
+      {% set relatedPosts = [] %}
+      {% set postList = sanityPosts if sanityPosts.length else collections.posts %}
+      {% for rp in postList %}
+        {% set rpUrl = rp.url if rp.data else ("/blog/" + rp.slug + "/") %}
+        {% if rpUrl != page.url and relatedPosts.length < 3 %}
+          {% set relatedPosts = (relatedPosts.push(rp), relatedPosts) %}
+        {% endif %}
+      {% endfor %}
+
+      {% if relatedPosts.length %}
+      <div class="related-posts fade-in">
+        <div class="related-posts__header">
+          <h3>{{ icon("training", 20) }} You Might Also Enjoy</h3>
+        </div>
+        <div class="related-posts__grid">
+          {% for rp in relatedPosts %}
+            {% set rpTitle = rp.data.title if rp.data else rp.title %}
+            {% set rpImage = (("/assets/" + rp.data.image) | url) if rp.data else rp.featuredImage %}
+            {% set rpUrl = rp.url if rp.data else ("/blog/" + rp.slug + "/") %}
+            {% set rpCategory = rp.data.categoryName if rp.data else (rp.categoryName or rp.category) %}
+            {% set rpDate = rp.data.date if rp.data else rp.publishedAt %}
+            <a href="{{ rpUrl | url }}" class="related-post-card">
+              {% if rpImage %}
+                <div class="related-post-card__image">
+                  <img src="{{ rpImage }}" alt="{{ rpTitle }}" loading="lazy">
+                </div>
+              {% endif %}
+              <div class="related-post-card__body">
+                <span class="related-post-card__category">{{ rpCategory }}</span>
+                <h4 class="related-post-card__title">{{ rpTitle }}</h4>
+                <span class="related-post-card__date">{{ rpDate | dateFormat }}</span>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+      {# ===== RELATED POSTS CTA ===== #}
+      <div class="article__related-cta fade-in">
+        <h3>{{ icon("compass", 20) }} Continue Your Pet Care Journey</h3>
+        <p>Explore more expert guides and tips to help your pet live their best life.</p>
+        <div class="article__related-actions">
+          <a href="{{ '/blog/' | url }}" class="btn btn-primary">More Articles {{ icon("arrow-right", 16) }}</a>
+          <a href="{{ '/categories/' | url }}" class="btn btn-outline">Browse Categories</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+{# ===== ARTICLE SCHEMA ===== #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ title }}",
+  "description": "{{ excerpt or metaDescription }}",
+  "image": "{{ site.url }}{{ ('/assets/' + image) | url }}",
+  "datePublished": "{{ date }}",
+  {% if updated %}"dateModified": "{{ updated }}",{% endif %}
+  "author": {
+    "@type": "Organization",
+    "name": "PetBuddyHub Team",
+    "url": "{{ site.url }}/about/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.title }}",
+    "url": "{{ site.url }}"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ site.url }}{{ page.url }}"
+  }
+}
+</script>
+
+{# ===== BREADCRUMB SCHEMA ===== #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ site.url }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "{{ site.url }}/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ title }}"
+    }
+  ]
+}
+</script>
